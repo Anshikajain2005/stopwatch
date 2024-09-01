@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timewatch</title>
+    <style>
+        .container {
+            
+            font-size: 40px;
+            border-style: solid;
+            margin-top:300px;
+            margin-left:600px;
+            background-color: rgb(209, 209, 239);
+            width: 300px;
+            padding:20px;
+            
+        }
+        button{
+            padding:15px;
+            width:90px;
+            border-radius:5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" align="center">
+
+        <table>
+            <tr>
+
+                <th id="counter1">00 </th>
+                <th>::</th>
+                <th id="counter2">00 </th>
+                <th>::</th>
+                <th id="counter3">00 </th>
+                <th>::</th>
+                <th id="counter4">00</th>
+            </tr>
+        </table>
+    
+
+    <div class="buttoncl" align = "center">
+        <button id="starttime">Start</button>
+        <button id="stoptime">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+</div>
+    <script>
+        let num = 0, sec = 0, min = 0, hour = 0;
+        let interval;
+        let cnt1 = document.getElementById("counter1")
+        let cnt2 = document.getElementById("counter2")
+        let cnt3 = document.getElementById("counter3")
+        let cnt4 = document.getElementById("counter4")
+
+       
+        function timer() {
+            millisec += 1
+            
+            if (millisec == 100) {
+                millisec=0;
+                sec += 1
+                
+                if (sec == 60) {
+                    sec=0;
+                    min += 1
+                   
+                    
+                    if (min == 60) {
+                        min=0
+                        hour += 1
+                       
+                    }
+                }
+            }
+        
+        cnt1.textContent = hour.toString().padStart(2,'0');
+        cnt2.textContent = min.toString().padStart(2,'0');
+        cnt3.textContent = sec.toString().padStart(2,'0');
+        cnt4.textContent = millisec.toString().padStart(2,'0');
+        }
+        function start(){
+              interval=setInterval(timer,10)
+        }
+        function stop(){
+            clearInterval(interval)
+        }
+        function resettimer(){
+            stop();
+            millisec=0;
+            sec=0;
+            min=0;
+            hour=0;
+            cnt1.textContent = "00";
+            cnt2.textContent = "00";
+            cnt3.textContent = "00";
+            cnt4.textContent = "00";
+        }
+	 document.getElementById("starttime").addEventListener("click",start)
+    document.getElementById("reset").addEventListener("click",resettimer)
+    document.getElementById("stoptime").addEventListener("click",stop)
+
+
+    </script>
+</body>
+
+</html>
